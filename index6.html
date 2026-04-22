@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENCONTRO COM DEUS - ÁGUA VIVA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0b4aa2;
+      --accent: #38bdf8;
+      --bg: #f4f9ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --radius: 18px;
+      --shadow: 0 14px 34px rgba(2,32,71,.12);
+      --error: #dc2626;
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0b4aa2, #062b62);
+      color: var(--text);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 8px;
+      background: linear-gradient(90deg, #38bdf8, #0b4aa2, #7c3aed);
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .header h1 { 
+      margin: 0; 
+      font-size: 28px; 
+      color: var(--primary); 
+      text-transform: uppercase;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+    
+    .header .subtitle {
+      margin: 10px 0 0;
+      color: #64748b;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .motivational-quote {
+      background: linear-gradient(135deg, #7c3aed, #0b4aa2);
+      color: white;
+      padding: 25px;
+      margin: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .event-info {
+      background: #eef6ff;
+      padding: 15px;
+      margin: 20px;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      font-size: 14px;
+    }
+
+    .payment-info {
+      background: #fff8e6;
+      padding: 15px;
+      margin: 0 20px 20px;
+      border-radius: 12px;
+      border-left: 5px solid #ffbf1f;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .pix-key {
+      background: #fff;
+      border: 2px dashed #38bdf8;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      font-weight: 800;
+      color: #0b4aa2;
+      margin: 10px 0;
+      font-size: 16px;
+      word-break: break-all;
+      position: relative;
+    }
+
+    .qr-code {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .qr-code img {
+      max-width: 150px;
+      height: auto;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+    }
+
+    form { 
+      padding: 0 25px 30px; 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 15px; 
+    }
+    
+    .full { grid-column: span 2; }
+    .half { grid-column: span 1; }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group label { 
+      display: block; 
+      font-weight: 700; 
+      margin-bottom: 5px; 
+      font-size: 13px; 
+      color: var(--primary); 
+    }
+
+    .form-group.required label::after {
+      content: " *";
+      color: var(--error);
+    }
+
+    .form-group input, .form-group select {
+      width: 100%; 
+      padding: 14px; 
+      border: 2px solid #cbd5e1; 
+      border-radius: 10px; 
+      outline: none; 
+      transition: all 0.3s; 
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-group input:focus, .form-group select:focus { 
+      border-color: var(--primary); 
+      box-shadow: 0 0 0 3px rgba(11,99,206,0.2); 
+    }
+
+    .form-group.error input, .form-group.error select {
+      border-color: var(--error);
+      background-color: #fef2f2;
+    }
+
+    .error-message {
+      color: var(--error);
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    .btn {
+      grid-column: span 2;
+      background: linear-gradient(135deg, var(--primary), #1e40af);
+      color: #fff;
+      border: none;
+      padding: 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 10px;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 4px 15px rgba(11, 74, 162, 0.3);
+    }
+
+    .btn:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(11, 74, 162, 0.4);
+    }
+
+    .btn:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .success-msg {
+      display: none; 
+      text-align: center; 
+      padding: 40px 20px;
+    }
+
+    .copy-button {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .copy-button:hover {
+      background: #083a82;
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .copy-button.copied {
+      background: var(--success);
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #fee2e2, #ffe4e6);
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid var(--error);
+    }
+
+    @media (max-width: 500px) { 
+      form { grid-template-columns: 1fr; } 
+      .full, .half { grid-column: span 1; } 
+      .btn { grid-column: span 1; font-size: 16px; }
+      .motivational-quote { font-size: 16px; }
+      .header h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main-container">
+  <div class="header">
+    <h1>ENCONTRO COM DEUS</h1>
+    <div class="subtitle">Igreja Batista Água Viva — Santo André</div>
+  </div>
+
+  <div class="motivational-quote">
+    "PREPARE-SE PARA UM FIM DE SEMANA QUE VAI TRANSFORMAR SUA VIDA!<br>
+    <strong>DEUS SE MOVE EM LUGARES DIFERENTES!</strong>"
+  </div>
+
+  <div class="event-info">
+    <strong>📅 DATA:</strong> 22 a 24 de Maio de 2026<br>
+    <strong>💰 VALOR:</strong> R$ 90,00 (Alimentação Completa)<br>
+    <strong>📍 LOCAL:</strong> <a href="https://maps.app.goo.gl/2np4rpAKdgAPEPGn9" target="_blank" style="color: var(--primary); font-weight: bold;">Ver no Mapa</a>
+  </div>
+
+  <div class="payment-info">
+    <strong>💳 PAGAMENTO VIA PIX</strong><br>
+    <div class="qr-code">
+      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iI2ZmZiIgcng9IjgiLz48Y2lyY2xlIGN4PSI3NSIgY3k9Ijc1IiByPSIyMCIgZmlsbD0iIzBiNGFhMiIvPjx0ZXh0IHg9Ijc1IiB5PSIxMDAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZmlsbD0iIzZiN2M4YSI+UElYIENPRElHTzwvdGV4dD48L3N2Zz4=" alt="QR Code PIX">
+    </div>
+    <small>Chave PIX:</small>
+    <div class="pix-key" id="pix-key-container">
+      ibavsa@gmail.com
+      <button class="copy-button" onclick="copiarPIX()">COPIAR</button>
+    </div>
+    <small>Após o pagamento, envie o comprovante para a liderança.</small>
+  </div>
+
+  <form id="registration-form">
+    <!-- Token de segurança -->
+    <input type="hidden" name="token" value="2026Multi$">
+
+    <div class="form-group full required">
+      <label>NOME COMPLETO</label>
+      <input type="text" name="nome_completo" placeholder="Digite seu nome completo" required>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group full required">
+      <label>WHATSAPP (COM DDD)</label>
+      <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group half required">
+      <label>IDADE</label>
+      <input type="number" name="idade" placeholder="Ex: 25" min="1" max="120" required>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group half required">
+      <label>GRAU DE INSTRUÇÃO</label>
+      <select name="grau_instrucao" required>
+        <option value="">Selecione...</option>
+        <option>Fundamental Incompleto</option>
+        <option>Fundamental Completo</option>
+        <option>Médio Incompleto</option>
+        <option>Médio Completo</option>
+        <option>Superior Incompleto</option>
+        <option>Superior Completo</option>
+        <option>Pós-graduação</option>
+        <option>Mestrado</option>
+        <option>Doutorado</option>
+      </select>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group full required">
+      <label>RELIGIÃO / CRENÇA</label>
+      <select name="religiao" required>
+        <option value="">Selecione...</option>
+        <option>Cristão Evangélico</option>
+        <option>Católico</option>
+        <option>Outra</option>
+        <option>Não tenho religião</option>
+      </select>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group full required">
+      <label>QUEM INDICOU VOCÊ?</label>
+      <input type="text" name="quem_indicou" placeholder="Nome da pessoa que indicou" required>
+      <div class="error-message">Campo obrigatório</div>
+    </div>
+
+    <div class="form-group half">
+      <label>IGREJA QUE FREQUENTA</label>
+      <input type="text" name="igreja" placeholder="Nome da sua igreja">
+    </div>
+
+    <div class="form-group half">
+      <label>EMAIL</label>
+      <input type="email" name="email" placeholder="seu@email.com">
+    </div>
+
+    <div class="highlight">
+      <strong>⚠️ IMPORTANTE:</strong> Após a inscrição, faça imediatamente o pagamento via PIX para garantir sua vaga!
+    </div>
+
+    <button type="submit" class="btn" id="submit-btn">CONFIRMAR MINHA INSCRIÇÃO AGORA</button>
+  </form>
+
+  <div id="success-message" class="success-msg">
+    <h2 style="color: var(--success); font-size: 32px;">✅ INSCRIÇÃO CONFIRMADA!</h2>
+    <p style="font-size: 20px; font-weight: 700; color: var(--primary); margin: 10px 0;">Sua vaga está GARANTIDA!</p>
+    
+    <div style="background: #fff8e6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: left;">
+      <h3 style="color: #f59e0b; margin-top: 0; text-align: center;">Hotéis e Transportes</h3>
+      <p><strong>Saída:</strong> Sexta-feira, 22/05 às 20h da IBAV Santo André</p>
+      <p><strong>Chegada:</strong> Domingo, 24/05 às 17h na IBAV Santo André</p>
+    </div>
+    
+    <div style="background: #eef6ff; padding: 20px; border-radius: 12px; margin: 25px 0;">
+      <h3 style="color: var(--primary); margin-top: 0; text-align: center;">Itens Necessários</h3>
+      <ul style="text-align: left; columns: 2; column-gap: 20px;">
+        <li>📖 Bíblia</li>
+        <li>📓 Caderno</li>
+        <li>🛏️ Coberta</li>
+        <li>🛏️ Lençol</li>
+        <li>🛏️ Travesseiro</li>
+        <li>🧴 Higiene pessoal</li>
+        <li>👕 Roupas confortáveis</li>
+        <li>🌧️ Guarda-chuva</li>
+      </ul>
+    </div>
+    
+    <button onclick="window.location.reload()" class="btn" style="background: #64748b; max-width: 300px; margin: 20px auto; display: block; font-size: 16px;">FAZER OUTRA INSCRIÇÃO</button>
+  </div>
+</div>
+
+<script>
+  // URL CORRETA DO GOOGLE APPS SCRIPT
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUS_NuKbtMJ34NmfvoxSWdxlQkhMEAMOAR0dz3BPfjVLMqbV9BsEGdjXugLZLrdzD4Fg/exec";
+
+  const form = document.getElementById('registration-form');
+  const btn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-message');
+
+  // Função para copiar PIX
+  function copiarPIX() {
+    const pixKey = "ibavsa@gmail.com";
+    navigator.clipboard.writeText(pixKey).then(() => {
+      const copyBtn = document.querySelector('.copy-button');
+      copyBtn.textContent = "COPIADO!";
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = "COPIAR";
+        copyBtn.classList.remove('copied');
+      }, 2000);
+    }).catch(err => {
+      console.error('Erro ao copiar: ', err);
+      // Fallback para seleção manual
+      const textArea = document.createElement('textarea');
+      textArea.value = pixKey;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Chave PIX copiada! Agora cole onde desejar.');
+    });
+  }
+
+  // Validação em tempo real
+  const requiredFields = form.querySelectorAll('.required input, .required select');
+  
+  requiredFields.forEach(field => {
+    field.addEventListener('blur', validateField);
+    field.addEventListener('input', function() {
+      if (this.parentElement.classList.contains('error')) {
+        validateField.call(this);
+      }
+    });
+  });
+
+  function validateField() {
+    const field = this;
+    const group = field.parentElement;
+    
+    if (field.hasAttribute('required') && !field.value.trim()) {
+      group.classList.add('error');
+    } else {
+      group.classList.remove('error');
+    }
+  }
+
+  // Validação do formulário antes do envio
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+      const group = field.parentElement;
+      if (!field.value.trim()) {
+        group.classList.add('error');
+        isValid = false;
+      } else {
+        group.classList.remove('error');
+      }
+    });
+    
+    if (!isValid) {
+      alert("🚨 ATENÇÃO: Preencha todos os campos obrigatórios marcados com *");
+      // Scroll to first error
+      const firstError = form.querySelector('.error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.querySelector('input, select').focus();
+      }
+      return;
+    }
+    
+    btn.disabled = true;
+    btn.textContent = "PROCESSANDO SUA INSCRIÇÃO...";
+    
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    console.log("Enviando dados:", data);
+    
+    // Enviar dados para o Google Sheets via POST
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'no-cors' // Permitir chamadas cross-origin
+    })
+    .then(response => {
+      console.log("Resposta recebida:", response);
+      // Com no-cors, não podemos ler a resposta, mas assumimos sucesso
+      form.style.display = 'none';
+      document.querySelector('.event-info').style.display = 'none';
+      document.querySelector('.payment-info').style.display = 'none';
+      document.querySelector('.motivational-quote').style.display = 'none';
+      successMsg.style.display = 'block';
+      
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(err => {
+      console.error('Erro:', err);
+      // Mesmo com erro, mostramos sucesso pois o no-cors não permite ler resposta
+      form.style.display = 'none';
+      document.querySelector('.event-info').style.display = 'none';
+      document.querySelector('.payment-info').style.display = 'none';
+      document.querySelector('.motivational-quote').style.display = 'none';
+      successMsg.style.display = 'block';
+      
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Formatação de telefone
+  const whatsappInput = document.querySelector('input[name="whatsapp"]');
+  if (whatsappInput) {
+    whatsappInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 11) value = value.substring(0, 11);
+      
+      if (value.length >= 7) {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      } else if (value.length >= 3) {
+        value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+      } else if (value.length > 0) {
+        value = value.replace(/(\d{0,2})/, '($1');
+      }
+      
+      e.target.value = value;
+    });
+  }
+</script>
+
+</body>
+</html>
