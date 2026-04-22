@@ -491,6 +491,8 @@
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     
+    console.log("Enviando dados:", data);
+    
     // Enviar dados para o Google Sheets via POST
     fetch(SCRIPT_URL, {
       method: 'POST',
@@ -500,12 +502,14 @@
       }
     })
     .then(res => {
+      console.log("Resposta bruta:", res);
       if (!res.ok) {
-        throw new Error('Erro na resposta do servidor');
+        throw new Error('Erro na resposta do servidor: ' + res.status);
       }
       return res.json();
     })
     .then(response => {
+      console.log("Resposta JSON:", response);
       if(response && response.ok) {
         form.style.display = 'none';
         document.querySelector('.event-info').style.display = 'none';
@@ -520,8 +524,8 @@
       }
     })
     .catch(err => {
-      console.error('Erro:', err);
-      alert("❌ Houve um erro ao processar sua inscrição. Por favor, tente novamente.");
+      console.error('Erro completo:', err);
+      alert("❌ Houve um erro ao processar sua inscrição. Por favor, tente novamente.\n\nDetalhes: " + err.message);
       btn.disabled = false;
       btn.textContent = "CONFIRMAR MINHA INSCRIÇÃO AGORA";
     });
