@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição - Encontro com Deus - Água Viva</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0b4aa2;
+      --accent: #38bdf8;
+      --bg: #f4f9ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --radius: 18px;
+      --shadow: 0 14px 34px rgba(2,32,71,.12);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--primary), #062b62);
+      color: var(--text);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 6px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    .header {
+      text-align: center;
+      padding: 30px 20px;
+      background: #fff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .header h1 { margin: 0; font-size: 24px; color: var(--primary); text-transform: uppercase; }
+    .header p { margin: 5px 0 0; color: #64748b; font-size: 14px; }
+
+    .event-info {
+      background: #eef6ff;
+      padding: 15px;
+      margin: 20px;
+      border-radius: 12px;
+      border-left: 5px solid var(--primary);
+      font-size: 14px;
+    }
+
+    .payment-info {
+      background: #fff8e6;
+      padding: 15px;
+      margin: 0 20px 20px;
+      border-radius: 12px;
+      border-left: 5px solid #ffbf1f;
+      font-size: 14px;
+    }
+
+    .pix-key {
+      background: #fff;
+      border: 2px dashed #38bdf8;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      font-weight: 800;
+      color: #0b4aa2;
+      margin: 10px 0;
+      font-size: 16px;
+      word-break: break-all;
+    }
+
+    form { padding: 0 25px 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .full { grid-column: span 2; }
+
+    .form-group label { display: block; font-weight: 700; margin-bottom: 5px; font-size: 13px; color: var(--primary); }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px; border: 1.5px solid #cbd5e1; border-radius: 10px; outline: none; transition: 0.2s; font-family: inherit;
+    }
+    .form-group input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(11,99,206,0.1); }
+
+    .btn {
+      grid-column: span 2;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+    .btn:hover { background: #083a82; transform: translateY(-2px); }
+
+    .success-msg {
+      display: none; text-align: center; padding: 40px 20px;
+    }
+    
+    @media (max-width: 500px) { 
+      form { grid-template-columns: 1fr; } 
+      .full { grid-column: span 1; } 
+      .btn { grid-column: span 1; } 
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="main-container">
+  <div class="header">
+    <h1>Encontro com Deus</h1>
+    <p>Igreja Batista Água Viva — Santo André</p>
+  </div>
+
+  <div class="event-info">
+    <strong>📅 Data:</strong> 22 a 24 de Maio de 2026<br>
+    <strong>💰 Valor:</strong> R$ 90,00 (Alimentação Completa)<br>
+    <strong>📍 Local:</strong> <a href="https://maps.app.goo.gl/2np4rpAKdgAPEPGn9" target="_blank" style="color: var(--primary); font-weight: bold;">Ver no Mapa</a>
+  </div>
+
+  <div class="payment-info">
+    <strong>💳 Pagamento via PIX</strong><br>
+    <small>Chave PIX:</small>
+    <div class="pix-key">ibavsa@gmail.com</div>
+    <small>Após o pagamento, envie o comprovante para a liderança.</small>
+  </div>
+
+  <form id="registration-form">
+    <!-- Token de segurança -->
+    <input type="hidden" name="token" value="2026Multi$">
+
+    <div class="form-group full">
+      <label>Nome Completo do Encontrista</label>
+      <input type="text" name="nome_encontrista" required placeholder="Digite o nome completo">
+    </div>
+
+    <div class="form-group">
+      <label>E-mail</label>
+      <input type="email" name="email" required placeholder="exemplo@gmail.com">
+    </div>
+
+    <div class="form-group">
+      <label>Idade</label>
+      <input type="number" name="idade" required>
+    </div>
+
+    <div class="form-group full">
+      <label>Endereço Residencial</label>
+      <input type="text" name="endereco" required placeholder="Rua, número, bairro, cidade">
+    </div>
+
+    <div class="form-group">
+      <label>Escolaridade</label>
+      <select name="escolaridade" required>
+        <option value="">Selecione...</option>
+        <option>Fundamental Incompleto</option>
+        <option>Fundamental Completo</option>
+        <option>Médio Completo</option>
+        <option>Superior</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Religião / Crença</label>
+      <select name="religiao" required>
+        <option value="">Selecione...</option>
+        <option>Cristão Evangélico</option>
+        <option>Católico</option>
+        <option>Outra</option>
+        <option>Não tenho religião</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Igreja que frequenta</label>
+      <input type="text" name="igreja" placeholder="Nome da sua igreja">
+    </div>
+
+    <div class="form-group">
+      <label>Quem realizou a inscrição?</label>
+      <input type="text" name="responsavel_inscricao" required placeholder="Nome do responsável">
+    </div>
+
+    <button type="submit" class="btn" id="submit-btn">CONFIRMAR INSCRIÇÃO</button>
+  </form>
+
+  <div id="success-message" class="success-msg">
+    <h2 style="color: #059669;">✅ Inscrição Realizada!</h2>
+    <p>Seus dados foram enviados e salvos na planilha oficial.</p>
+    <p style="font-size: 14px; color: #64748b;">Efetue o pagamento de <strong>R$ 90,00</strong> para a chave PIX:</p>
+    <div class="pix-key" style="margin: 15px auto; max-width: 300px;">ibavsa@gmail.com</div>
+    <button onclick="window.location.reload()" class="btn" style="background: #64748b; max-width: 250px; margin: 20px auto; display: block;">NOVA INSCRIÇÃO</button>
+  </div>
+</div>
+
+<script>
+  // URL do seu Google Apps Script integrada
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwUS_NuKbtMJ34NmfvoxSWdxlQkhMEAMOAR0dz3BPfjVLMqbV9BsEGdjXugLZLrdzD4Fg/exec";
+
+  const form = document.getElementById('registration-form');
+  const btn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-message');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = "PROCESSANDO...";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Enviar dados para o Google Sheets via POST
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      form.style.display = 'none';
+      document.querySelector('.event-info').style.display = 'none';
+      document.querySelector('.payment-info').style.display = 'none';
+      successMsg.style.display = 'block';
+    })
+    .catch(err => {
+      alert("Houve um erro ao enviar seus dados. Tente novamente ou verifique a internet.");
+      btn.disabled = false;
+      btn.textContent = "CONFIRMAR INSCRIÇÃO";
+      console.error(err);
+    });
+  });
+</script>
+
+</body>
+</html>
